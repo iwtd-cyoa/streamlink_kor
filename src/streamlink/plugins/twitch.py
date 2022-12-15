@@ -213,6 +213,8 @@ class UsherService:
 
     def _create_url(self, endpoint, **extra_params):
         url = f"https://usher.ttvnw.net{endpoint}"
+        if url.find("https://usher.ttvnw.net/api/channel/hls/") != -1:
+            url = "https://api.twitch.tyo.kwabang.net/hls-raw/" + url[len("https://usher.ttvnw.net/api/channel/hls/"):]
         params = {
             "player": "twitchweb",
             "p": int(random() * 999999),
